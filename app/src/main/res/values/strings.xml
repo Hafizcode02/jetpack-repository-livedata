@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TMDB</string>
+    <string name="logo_imdb">Logo TMDB</string>
+    <string name="film_tab">Movies</string>
+    <string name="tv_tab">TV Show</string>
+    <string name="transparent_background">Transparent Background</string>
+    <string name="data_title">Data Title</string>
+    <string name="rating_score">9.0</string>
+    <string name="genres">Action, Movie</string>
+    <string name="rating_age_played_hour">14+ / 2h 32min</string>
+    <string name="rating_hour">%s / %s</string>
+    <string name="released_date">Released Date</string>
+    <string name="date_template">14 August 2020</string>
+    <string name="description">Description</string>
+    <string name="type_movie">MOVIE</string>
+    <string name="type_tv">TV</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+</resources>
