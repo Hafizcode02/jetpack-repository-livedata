@@ -3,11 +3,10 @@ package com.hafizcode.moviesandtv.ui.home.content.tv
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.hafizcode.moviesandtv.R
 import com.hafizcode.moviesandtv.data.DataEntity
 import com.hafizcode.moviesandtv.databinding.ItemRowBinding
+import com.hafizcode.moviesandtv.utils.Helper.IMAGE_API_ENDPOINT
+import com.hafizcode.moviesandtv.utils.Helper.setImageWithGlide
 
 class TvAdapter(private val callback: TvFragment) :
     RecyclerView.Adapter<TvAdapter.TvViewHolder>() {
@@ -18,6 +17,7 @@ class TvAdapter(private val callback: TvFragment) :
         if (tv == null) return
         listTV.clear()
         listTV.addAll(tv)
+        notifyDataSetChanged()
     }
 
     inner class TvViewHolder(private val binding: ItemRowBinding) :
@@ -25,13 +25,11 @@ class TvAdapter(private val callback: TvFragment) :
         fun bind(data: DataEntity) {
             with(binding) {
                 tvTitle.text = data.title
-                Glide.with(itemView.context)
-                    .load(data.imgPoster)
-                    .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading_black)
-                            .error(R.drawable.ic_error_image)
-                    )
-                    .into(imgItemPhoto)
+                setImageWithGlide(
+                    itemView.context,
+                    IMAGE_API_ENDPOINT + data.imgPoster,
+                    imgItemPhoto
+                )
                 itemView.setOnClickListener {
                     callback.onItemClicked(data)
                 }

@@ -7,11 +7,11 @@ import kotlinx.parcelize.Parcelize
 data class DataEntity(
     var id: String,
     var title: String,
-    var description: String,
-    var genre: String,
-    var releasedYear: String,
-    var ratingFor: String,
-    var ratingFilm: String,
-    var playedHour: String,
-    var imgPoster: Int,
+    var description: String? = null,
+    var genre: String? = null,
+    var releasedYear: String? = null,
+    var ratingFor: String? = null,
+    var ratingFilm: String? = null,
+    var playedHour: String? = null,
+    var imgPoster: String,
 ) : Parcelable

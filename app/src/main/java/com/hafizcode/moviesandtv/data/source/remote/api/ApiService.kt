@@ -3,6 +3,7 @@ package com.hafizcode.moviesandtv.data.source.remote.api
 import com.hafizcode.moviesandtv.BuildConfig
 import com.hafizcode.moviesandtv.data.source.remote.response.ListResponse
 import com.hafizcode.moviesandtv.data.source.remote.response.MovieResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.RatedForResponse
 import com.hafizcode.moviesandtv.data.source.remote.response.TVResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -22,7 +23,13 @@ interface ApiService {
         @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
     ): Call<MovieResponse>
 
-    @GET("tv/tv_airing_today")
+    @GET("movie/{movie_id}/release_dates")
+    fun getRatedForMovies(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
+    ): Call<RatedForResponse>
+
+    @GET("tv/airing_today")
     fun getTVs(
         @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
     ): Call<ListResponse<TVResponse>>
@@ -32,5 +39,11 @@ interface ApiService {
         @Path("tv_id") tvId: Int,
         @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
     ): Call<TVResponse>
+
+    @GET("movie/{tv_id}/release_dates")
+    fun getRatedForTV(
+        @Path("tv_id") tvId: Int,
+        @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
+    ): Call<RatedForResponse>
 
 }

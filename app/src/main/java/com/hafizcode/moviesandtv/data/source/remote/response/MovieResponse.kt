@@ -23,7 +23,10 @@ data class MovieResponse(
 	val id: Int? = null,
 
 	@field:SerializedName("title")
-	val title: String? = null
+	val title: String? = null,
+
+	@field:SerializedName("poster_path")
+	val posterPath: String? = null
 )
 
 data class GenresItemMovie(
