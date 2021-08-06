@@ -1,6 +1,5 @@
 package com.hafizcode.moviesandtv.ui.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -57,10 +56,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun displayContent(data: DataEntity) {
-
-        var tempPlayedHour = ""
-        var tempRatingFor = ""
-
         Glide.with(applicationContext).load(IMAGE_API_ENDPOINT + data.imgPoster).apply(
             RequestOptions.placeholderOf(R.drawable.ic_loading_black)
                 .error(R.drawable.ic_error_image)
@@ -73,11 +68,11 @@ class DetailActivity : AppCompatActivity() {
             else -> getString(R.string.no_genres)
         }
 
-        tempRatingFor = when (data.ratingFor?.isNotEmpty()) {
+        val tempRatingFor = when (data.ratingFor?.isNotEmpty()) {
             true -> data.ratingFor.toString()
             else -> getString(R.string.dashes)
         }
-        tempPlayedHour = when (data.playedHour?.isNotEmpty()) {
+        val tempPlayedHour = when (data.playedHour?.isNotEmpty()) {
             true -> data.playedHour.toString()
             else -> getString(R.string.dashes)
         }

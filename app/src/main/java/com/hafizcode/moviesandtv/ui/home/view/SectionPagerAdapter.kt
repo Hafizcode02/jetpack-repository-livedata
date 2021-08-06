@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.hafizcode.moviesandtv.ui.home.view
 
 import android.content.Context
@@ -9,6 +11,7 @@ import com.hafizcode.moviesandtv.R
 import com.hafizcode.moviesandtv.ui.home.content.movie.MovieFragment
 import com.hafizcode.moviesandtv.ui.home.content.tv.TvFragment
 
+@Suppress("DEPRECATION")
 class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
