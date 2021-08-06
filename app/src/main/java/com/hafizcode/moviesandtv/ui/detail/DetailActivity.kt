@@ -2,6 +2,7 @@ package com.hafizcode.moviesandtv.ui.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -9,6 +10,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.hafizcode.moviesandtv.R
 import com.hafizcode.moviesandtv.data.DataEntity
 import com.hafizcode.moviesandtv.databinding.ActivityDetailBinding
+import com.hafizcode.moviesandtv.utils.Helper.IMAGE_API_ENDPOINT
+import com.hafizcode.moviesandtv.utils.Helper.MOVIE_TYPE
+import com.hafizcode.moviesandtv.utils.Helper.TV_TYPE
+import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
 
@@ -29,39 +34,64 @@ class DetailActivity : AppCompatActivity() {
         val dataType = intent.getStringExtra(DATA_TYPE)!!
 
         supportActionBar?.title =
-            if (dataType == R.string.type_movie.toString()) "Detail Movie" else "Detail TV"
+            if (dataType == MOVIE_TYPE) "Detail Movie" else "Detail TV"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[DetailViewModel::class.java]
+        val factory = ViewModelFactory.getInstance()
+        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         if (intent.extras != null) {
-            if (dataType == R.string.type_movie.toString()) {
-                viewModel.setMovieId(dataId)
-                displayContent(viewModel.getMovieById())
-            } else if (dataType == R.string.type_tv.toString()) {
-                viewModel.setTvId(dataId)
-                displayContent(viewModel.getTvById())
+            if (dataType.equals(MOVIE_TYPE, true)) {
+                viewModel.getDetailMovie(dataId.toInt()).observe(this, {
+                    Log.d("DATA MOVIE DETAIL", it.toString())
+                    displayContent(it)
+                })
+            } else if (dataType.equals(TV_TYPE, true)) {
+                viewModel.getDetailTV(dataId.toInt()).observe(this, {
+                    Log.d("DATA TV DETAIL", it.toString())
+                    displayContent(it)
+                })
             }
         }
 
     }
 
-    @SuppressLint("SetTextI18n")
     private fun displayContent(data: DataEntity) {
-        Glide.with(applicationContext).load(data.imgPoster).apply(
+
+        var tempPlayedHour = ""
+        var tempRatingFor = ""
+
+        Glide.with(applicationContext).load(IMAGE_API_ENDPOINT + data.imgPoster).apply(
             RequestOptions.placeholderOf(R.drawable.ic_loading_black)
                 .error(R.drawable.ic_error_image)
         ).apply(RequestOptions().override(700, 700)).into(activityDetailBinding.imageItem)
 
         activityDetailBinding.textTitle.text = data.title
         activityDetailBinding.textRatingFilm.text = data.ratingFilm
-        activityDetailBinding.textGenre.text = data.genre
+        activityDetailBinding.textGenre.text = when (data.genre?.isNotEmpty()) {
+            true -> data.genre
+            else -> getString(R.string.no_genres)
+        }
+
+        tempRatingFor = when (data.ratingFor?.isNotEmpty()) {
+            true -> data.ratingFor.toString()
+            else -> getString(R.string.dashes)
+        }
+        tempPlayedHour = when (data.playedHour?.isNotEmpty()) {
+            true -> data.playedHour.toString()
+            else -> getString(R.string.dashes)
+        }
         activityDetailBinding.textRatingHour.text =
-            getString(R.string.rating_hour, data.ratingFor, data.playedHour)
-        activityDetailBinding.textDate.text = data.releasedYear
-        activityDetailBinding.textDescription.text = data.description
+            getString(R.string.rating_hour, tempRatingFor, tempPlayedHour)
+
+        activityDetailBinding.textDate.text = when (data.releasedYear?.isNotEmpty()) {
+            true -> data.releasedYear
+            else -> getString(R.string.dashes)
+        }
+
+        activityDetailBinding.textDescription.text = when (data.description?.isNotEmpty()) {
+            true -> data.description
+            else -> getString(R.string.no_description)
+        }
     }
 }

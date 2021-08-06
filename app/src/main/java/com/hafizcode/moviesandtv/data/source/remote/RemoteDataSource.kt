@@ -3,6 +3,7 @@ package com.hafizcode.moviesandtv.data.source.remote
 import com.hafizcode.moviesandtv.data.source.remote.api.ApiClient
 import com.hafizcode.moviesandtv.data.source.remote.response.MovieResponse
 import com.hafizcode.moviesandtv.data.source.remote.response.RatedForResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.TVRatedResponse
 import com.hafizcode.moviesandtv.data.source.remote.response.TVResponse
 import com.hafizcode.moviesandtv.utils.EspressoIdlingResource
 import retrofit2.await
@@ -84,6 +85,6 @@ class RemoteDataSource {
     }
 
     interface LoadTvDetailCallback {
-        fun onTvShowDetailReceived(tvShowResponse: TVResponse, ratedForResponse: RatedForResponse)
+        fun onTvShowDetailReceived(tvShowResponse: TVResponse, tvRatedResponse: TVRatedResponse)
     }
 }
