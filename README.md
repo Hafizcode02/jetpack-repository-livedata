@@ -1,5 +1,5 @@
 # jetpack-architecture-component
-Submission Ke-1 Dicoding Belajar Android Jetpack Pro
+Submission Ke-2 Dicoding Belajar Android Jetpack Pro
 
 ## Submission Checklist
 - [x] Menerapkan LiveData dan Repository. (Terpenuhi)
