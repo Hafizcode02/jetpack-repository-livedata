@@ -15,13 +15,12 @@ import com.hafizcode.moviesandtv.utils.Helper.TV_TYPE
 import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
-
-    private lateinit var activityDetailBinding: ActivityDetailBinding
-
     companion object {
         const val DATA_ID = "DATA_ID"
         const val DATA_TYPE = "DATA_TYPE"
     }
+
+    private lateinit var activityDetailBinding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
