@@ -103,7 +103,7 @@ class MovieRepositoryTest {
         }
 
         assertNotNull(data)
-        assertEquals(listMovieResponse.size.toLong(), 20)
+        assertEquals(listMovieResponse.size.toLong(), data.size.toLong())
     }
 
     @Test

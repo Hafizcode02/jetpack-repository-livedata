@@ -39,7 +39,7 @@ class HomeActivityTest {
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie)).perform(
             RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
-                0
+                20
             )
         )
     }
@@ -79,7 +79,7 @@ class HomeActivityTest {
         onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tv)).perform(
             RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
-                0
+                20
             )
         )
     }

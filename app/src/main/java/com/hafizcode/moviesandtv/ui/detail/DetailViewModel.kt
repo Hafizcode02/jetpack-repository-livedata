@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hafizcode.moviesandtv.data.DataEntity
 import com.hafizcode.moviesandtv.data.source.MovieRepository
-import com.hafizcode.moviesandtv.utils.DataDummy
 
 class DetailViewModel(private val movieRepository: MovieRepository) : ViewModel() {
     fun getDetailMovie(movieId: Int): LiveData<DataEntity> = movieRepository.getMovieDetail(movieId)
